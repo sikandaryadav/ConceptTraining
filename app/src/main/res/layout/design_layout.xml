@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+
+    <EditText
+        android:id="@+id/et_fname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter fname"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColorHint="@color/black"
+        />
+
+    <EditText
+        android:id="@+id/et_lname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter lname"
+        android:layout_marginTop="10dp"
+        android:textColorHint="@color/black"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_margin="10dp"
+        >
+        <Button
+            android:id="@+id/btn_click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click"
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
+            android:layout_weight=".5"
+            android:layout_marginRight="10dp"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/text_size"
+            />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
+            android:layout_weight=".5"
+            android:layout_marginLeft="10dp"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/text_size"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_result"
+        android:text="Result"
+        android:layout_marginTop="20dp"
+        android:textSize="@dimen/text_size"
+        android:textColorHint="@color/black"
+        />
+
+</LinearLayout>
