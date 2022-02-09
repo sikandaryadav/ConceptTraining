@@ -6,7 +6,6 @@
     android:background="@color/white"
     android:orientation="vertical"
     >
-
     <EditText
         android:id="@+id/et_fname"
         android:layout_width="match_parent"
@@ -16,6 +15,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:textColorHint="@color/black"
+        android:inputType="numberDecimal"
         />
 
     <EditText
@@ -25,6 +25,7 @@
         android:hint="Enter lname"
         android:layout_marginTop="10dp"
         android:textColorHint="@color/black"
+        android:inputType="numberDecimal"
         />
 
     <LinearLayout
