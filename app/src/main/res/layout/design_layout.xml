@@ -50,8 +50,35 @@
             android:text="Female"
             android:textSize="@dimen/text_size"
             android:layout_weight=".5"
+            android:checked="true"
             />
     </RadioGroup>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb_Item1"
+        android:text="Item 1"
+        />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb_Item2"
+        android:text="Item 2"
+        />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb_Item3"
+        android:text="Item 3"
+        />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb_Item4"
+        android:text="Item 4"
+        android:checked="true"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
