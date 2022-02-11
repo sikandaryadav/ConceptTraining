@@ -16,6 +16,7 @@
         android:layout_marginRight="10dp"
         android:textColorHint="@color/black"
         android:inputType="numberDecimal"
+
         />
 
     <EditText

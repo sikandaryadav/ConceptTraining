@@ -1,4 +1,4 @@
-package chetu.second.batch.demo;
+package chetu.second.batch.demo.activities;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,9 +16,11 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import chetu.second.batch.demo.R;
 import chetu.second.batch.demo.databinding.DesignLayoutBinding;
+import chetu.second.batch.demo.utilities.Utility;
 
-public class LayoutDesignActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+public class LayoutDesignActivity extends BaseActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     Button btnClick, btnSubmit;
     Context context;
     EditText etFname, etLname;
@@ -26,10 +28,7 @@ public class LayoutDesignActivity extends AppCompatActivity implements View.OnCl
     RadioGroup rbGrpup;
     private String gender = "", cbItemsText = "";
     CheckBox cbItem1, cbItem2, cbItem3, cbItem4;
-
     private DesignLayoutBinding binding;
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,9 +119,14 @@ public class LayoutDesignActivity extends AppCompatActivity implements View.OnCl
 
             case R.id.btn_submit:
                 if (TextUtils.isEmpty(cbItemsText)){
-                    Toast.makeText(context, "Select atleast one item.", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "Select atleast one item.", Toast.LENGTH_SHORT).show();
+//                    Utility.showShortToast(context, "Select atleast one item.");
+                    showShortToast("Select atleast one item.");
                 }else {
-                    Toast.makeText(context, cbItemsText, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, cbItemsText, Toast.LENGTH_SHORT).show();
+//                    Utility.showLongToast(context, cbItemsText);
+//                    showLongToast(cbItemsText);
+                    showCustomToast(R.drawable.ic_correct, cbItemsText);
                 }
                 break;
 

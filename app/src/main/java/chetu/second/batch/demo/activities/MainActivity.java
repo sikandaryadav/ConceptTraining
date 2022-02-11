@@ -1,9 +1,11 @@
-package chetu.second.batch.demo;
+package chetu.second.batch.demo.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+
+import chetu.second.batch.demo.R;
 
 public class MainActivity extends AppCompatActivity {
     private String TAG = "_tag";
