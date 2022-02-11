@@ -3,6 +3,10 @@ package chetu.second.batch.demo.activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -13,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -82,6 +87,7 @@ public class LayoutDesignActivity extends BaseActivity implements View.OnClickLi
             }
         });
 
+        registerForContextMenu(binding.btnClick);
 
     }
 
@@ -142,5 +148,68 @@ public class LayoutDesignActivity extends BaseActivity implements View.OnClickLi
 //        RadioButton radioButton = findViewById(checkedId);
 ////        Toast.makeText(context, radioButton.getText().toString(), Toast.LENGTH_SHORT).show();
 //        gender = radioButton.getText().toString();
+    }
+
+    //TODO : Working with options menu
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.options_items, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // TODO : Click event on options menu item
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_1:
+                showCustomToast(R.drawable.ic_correct, item.getTitle().toString());
+                break;
+            case R.id.item_2:
+                showCustomToast(R.drawable.ic_correct, item.getTitle().toString());
+                break;
+            case R.id.item_3:
+                showCustomToast(R.drawable.ic_correct, item.getTitle().toString());
+                break;
+            case R.id.item_4:
+                showCustomToast(R.drawable.ic_correct, item.getTitle().toString());
+                break;
+            case R.id.item_5:
+                showCustomToast(R.drawable.ic_correct, item.getTitle().toString());
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    // TODO : Working with Context menu
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.options_items, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_1:
+                showCustomToast(R.drawable.ic_correct, item.getTitle().toString());
+                break;
+            case R.id.item_2:
+                showCustomToast(R.drawable.ic_correct, item.getTitle().toString());
+                break;
+            case R.id.item_3:
+                showCustomToast(R.drawable.ic_correct, item.getTitle().toString());
+                break;
+            case R.id.item_4:
+                showCustomToast(R.drawable.ic_correct, item.getTitle().toString());
+                break;
+            case R.id.item_5:
+                showCustomToast(R.drawable.ic_correct, item.getTitle().toString());
+                break;
+        }
+        return super.onContextItemSelected(item);
     }
 }
