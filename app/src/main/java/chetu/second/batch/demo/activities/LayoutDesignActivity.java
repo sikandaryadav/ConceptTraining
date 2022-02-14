@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -120,7 +121,10 @@ public class LayoutDesignActivity extends BaseActivity implements View.OnClickLi
 
         switch (v.getId()){
             case R.id.btn_click:
-
+                    // Showing Popup menu
+                PopupMenu popupMenu = new PopupMenu(context, v);
+                popupMenu.getMenuInflater().inflate(R.menu.options_items, popupMenu.getMenu());
+                popupMenu.show();
                     break;
 
             case R.id.btn_submit:
