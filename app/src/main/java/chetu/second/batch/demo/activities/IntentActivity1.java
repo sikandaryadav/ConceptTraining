@@ -7,9 +7,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.google.gson.Gson;
+
 import chetu.second.batch.demo.R;
 import chetu.second.batch.demo.databinding.ActivityIntent1Binding;
 import chetu.second.batch.demo.databinding.ActivityIntent2Binding;
+import chetu.second.batch.demo.model.UserData;
+import chetu.second.batch.demo.model.UserDataParceble;
+import chetu.second.batch.demo.model.UserDataWithSerilKeys;
+import chetu.second.batch.demo.utilities.Keys;
 
 public class IntentActivity1 extends BaseActivity implements View.OnClickListener {
     private ActivityIntent1Binding binding;
@@ -27,9 +33,37 @@ public class IntentActivity1 extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(context, IntentActivity2.class);
-        // Putting the data to the intent object
-        intent.putExtra("fname", binding.etFname.getText().toString());
-        intent.putExtra("lname", binding.etLname.getText().toString());
+        // TODO : Putting the data to the intent object
+//        intent.putExtra(Keys.FIRST_NAME, binding.etFname.getText().toString());
+//        intent.putExtra(Keys.LAST_NAME, binding.etLname.getText().toString());
+//        startActivity(intent);
+
+        // TODO : Sending data through bundle
+
+//        Bundle bundle = new Bundle();
+//        bundle.putString(Keys.FIRST_NAME, binding.etFname.getText().toString());
+//        bundle.putString(Keys.LAST_NAME, binding.etLname.getText().toString());
+//        intent.putExtras(bundle);
+//        startActivity(intent);
+
+        // TODO : Sending Serialized Data
+//        UserData userData = new UserData();
+//        userData.setfName(binding.etFname.getText().toString());
+//        userData.setlName(binding.etLname.getText().toString());
+//        intent.putExtra(Keys.SERIALIZED_DATA, userData);
+//        startActivity(intent);
+
+        // TODO : Passing data into json format
+
+//        UserDataWithSerilKeys data = new UserDataWithSerilKeys();
+//        data.setFirstName(binding.etFname.getText().toString());
+//        data.setLastName(binding.etLname.getText().toString());
+//        intent.putExtra(Keys.JSON_DATA, new Gson().toJson(data));
+//        startActivity(intent);
+
+        //TODO : Passing Parceble Data;
+        UserDataParceble dataParceble = new UserDataParceble(binding.etFname.getText().toString(), binding.etLname.getText().toString());
+        intent.putExtra(Keys.PARCEBLE_DATA, dataParceble);
         startActivity(intent);
     }
 

@@ -13,8 +13,7 @@
         android:hint="Enter fname"
         android:layout_marginTop="50dp"
         android:textColorHint="@color/black"
-        android:inputType="numberDecimal"
-
+        android:inputType="textCapWords"
         />
 
     <EditText
@@ -24,7 +23,7 @@
         android:hint="Enter lname"
         android:layout_marginTop="10dp"
         android:textColorHint="@color/black"
-        android:inputType="numberDecimal"
+        android:inputType="textCapWords"
         />
 
     <Button
