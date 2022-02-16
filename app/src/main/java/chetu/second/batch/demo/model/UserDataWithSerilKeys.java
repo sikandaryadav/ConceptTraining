@@ -10,6 +10,11 @@ public class UserDataWithSerilKeys implements Serializable {
     @SerializedName("lname")
     private String lastName;
 
+    public UserDataWithSerilKeys(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public String getFirstName() {
         return firstName;
     }
