@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.FragmnetLifecycleActivity">
+
+<!--     <fragment-->
+<!--         android:layout_width="match_parent"-->
+<!--         android:layout_height="match_parent"-->
+<!--         android:id="@+id/fragment"-->
+<!--         android:name="chetu.second.batch.demo.fragments.MyStaticFragment"-->
+<!--         />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_margin="5dp"
+        >
+     <Button
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/btn_add"
+         android:text="Add"
+         android:layout_weight="1"
+         android:layout_marginRight="2dp"
+         />
+         <Button
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/btn_remove"
+             android:text="Remove"
+             android:layout_weight="1"
+             android:layout_marginLeft="2dp"
+             android:layout_marginRight="2dp"
+             />
+         <Button
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/btn_replace"
+             android:text="Replace"
+             android:layout_weight="1"
+             android:layout_marginLeft="2dp"
+             android:layout_marginRight="2dp"
+             />
+    </LinearLayout>
+
+     <FrameLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:id="@+id/fragment_container"
+         />
+
+</LinearLayout>

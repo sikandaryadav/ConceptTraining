@@ -59,6 +59,9 @@ public class DialogsActivity extends BaseActivity implements View.OnClickListene
 
             case R.id.btn_custom_dialog:
                 // CUsotm dialog
+
+
+
                 CustomDialogBinding customBinding = CustomDialogBinding.inflate(getLayoutInflater());
                 Dialog dialog = new Dialog(context);
                 dialog.setContentView(customBinding.getRoot());
