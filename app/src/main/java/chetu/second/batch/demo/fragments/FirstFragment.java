@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import chetu.second.batch.demo.fragments.databinding.FragmentFirstBinding;
+import chetu.second.batch.demo.R;
+import chetu.second.batch.demo.databinding.FragmentFirstBinding;
+
 
 public class FirstFragment extends Fragment {
 
