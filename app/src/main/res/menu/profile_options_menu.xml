@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+ <item
+     android:id="@+id/item_create_profile"
+     android:title="Create Profile"
+     />
+    <item
+        android:id="@+id/item_delete_all_profile"
+        android:title="Delete All Profile"
+        />
+</menu>
