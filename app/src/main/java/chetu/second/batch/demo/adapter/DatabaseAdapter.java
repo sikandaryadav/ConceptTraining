@@ -1,10 +1,14 @@
 package chetu.second.batch.demo.adapter;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import chetu.second.batch.demo.utilities.Utility;
 
 public class DatabaseAdapter {
     private final String DB_NAME = "chetu";
@@ -29,6 +33,24 @@ public class DatabaseAdapter {
     public DatabaseAdapter openDatabase(){
         sqLiteDatabase = myDbHelper.getWritableDatabase();
         return this;
+    }
+
+    public void insertData(Context context, String firstName, String lastName, String image){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FIRST_NAME, firstName);
+        contentValues.put(LAST_NAME, lastName);
+        contentValues.put(IMAGE, image);
+        long insertedRow = sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
+        if (insertedRow > 0){
+            Utility.showLongToast(context, insertedRow+" data is successfully inserted");
+        }else {
+            Utility.showLongToast(context, "Something went wrong");
+        }
+    }
+
+    public Cursor getAllData(){
+        String[] colList = new String[]{ROW_ID, FIRST_NAME, LAST_NAME, IMAGE};
+        return sqLiteDatabase.query(TABLE_NAME, colList, null, null, null, null, null);
     }
 
     class MyDbHelper extends SQLiteOpenHelper{

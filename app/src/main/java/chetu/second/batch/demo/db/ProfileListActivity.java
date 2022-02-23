@@ -10,14 +10,19 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import java.io.ByteArrayOutputStream;
 
 import chetu.second.batch.demo.R;
 import chetu.second.batch.demo.activities.BaseActivity;
@@ -25,11 +30,14 @@ import chetu.second.batch.demo.activities.ImpliciteActivity;
 import chetu.second.batch.demo.adapter.DatabaseAdapter;
 import chetu.second.batch.demo.databinding.ActivityProfileListBinding;
 import chetu.second.batch.demo.databinding.LayoutProfileBinding;
+import chetu.second.batch.demo.utilities.Utility;
 
 public class ProfileListActivity extends BaseActivity {
     private ActivityProfileListBinding binding;
     LayoutProfileBinding profileBinding;
     private DatabaseAdapter adapter;
+    private String imageInBase64;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,19 @@ public class ProfileListActivity extends BaseActivity {
 
         adapter = new DatabaseAdapter(this);
         adapter.openDatabase();
+
+        cursor = adapter.getAllData();
+        Log.d("DATA", ""+cursor);
+        cursor.moveToFirst();
+        do {
+            String rowId = cursor.getString(0);
+            String fName = cursor.getString(1);
+            String lName = cursor.getString(2);
+            String image = cursor.getString(3);
+
+            Log.d("DATA1", rowId+" "+fName+" "+lName+" "+image);
+        }while (cursor.moveToNext());
+
     }
 
     @Override
@@ -63,10 +84,18 @@ public class ProfileListActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         if (ContextCompat.checkSelfPermission(ProfileListActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
-
+                            callCamera();
                         }else {
                             ActivityCompat.requestPermissions(ProfileListActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
                         }
+                    }
+                });
+
+                profileBinding.btnCreateProfile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                      adapter.insertData(ProfileListActivity.this, profileBinding.etFirstName.getText().toString(), profileBinding.etLastName.getText().toString(), imageInBase64);
+                      dialog.dismiss();
                     }
                 });
 
@@ -101,7 +130,9 @@ public class ProfileListActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 101 && resultCode == RESULT_OK){
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            imageInBase64 = Utility.convertBitmaptoBase64(bitmap);
             profileBinding.imageView.setImageBitmap(bitmap);
+
         }
     }
 }
