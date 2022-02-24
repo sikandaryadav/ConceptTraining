@@ -1,6 +1,7 @@
 package chetu.second.batch.demo.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.List;
 import chetu.second.batch.demo.R;
 import chetu.second.batch.demo.databinding.CustomProfileItemBinding;
 import chetu.second.batch.demo.model.StudentData;
+import chetu.second.batch.demo.utilities.Utility;
 
 public class CustomListAdapter extends BaseAdapter {
     private List<StudentData> list;
@@ -41,8 +43,12 @@ public class CustomListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(R.layout.custom_profile_item, parent, false);
         ImageView imageView = convertView.findViewById(R.id.item_image_view);
-        TextView name = convertView.findViewById(R.id.item_name);
+        TextView tvName = convertView.findViewById(R.id.item_name);
         StudentData data = list.get(position);
+
+        Bitmap bitmap = Utility.convertBase64ToBitmap(data.getImage());
+        imageView.setImageBitmap(bitmap);
+        tvName.setText(data.getfName()+" "+data.getlName());
 
         return convertView;
     }

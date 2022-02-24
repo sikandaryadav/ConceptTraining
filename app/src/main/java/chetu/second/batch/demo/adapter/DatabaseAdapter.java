@@ -53,6 +53,40 @@ public class DatabaseAdapter {
         return sqLiteDatabase.query(TABLE_NAME, colList, null, null, null, null, null);
     }
 
+    public void deleteSingleRecord(Context context, String rowId){
+        // DELETE * FROM STUDENT Where RowDI = 101;
+        int deletedItems = sqLiteDatabase.delete(TABLE_NAME, ROW_ID+" = "+rowId, null);
+        if (deletedItems > 0 ){
+            Utility.showLongToast(context, deletedItems+" Record deleted");
+        }else {
+            Utility.showLongToast(context, "Something went wrong.");
+        }
+    }
+
+    public void updateRecord(Context context, String firstName, String lastName, String image, String rowId){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FIRST_NAME, firstName);
+        contentValues.put(LAST_NAME, lastName);
+        contentValues.put(IMAGE, image);
+        int updatedRow = sqLiteDatabase.update(TABLE_NAME, contentValues, ROW_ID+" = "+rowId, null);
+        if (updatedRow > 0){
+            Utility.showLongToast(context, updatedRow+" data is successfully updated");
+        }else {
+            Utility.showLongToast(context, "Something went wrong");
+        }
+    }
+
+    public void deleteAllRecords(Context context){
+        int deletedItems = sqLiteDatabase.delete(TABLE_NAME, null, null);
+        if (deletedItems > 0 ){
+            Utility.showLongToast(context, deletedItems+" Record deleted");
+        }else {
+            Utility.showLongToast(context, "Something went wrong.");
+        }
+    }
+
+
+
     class MyDbHelper extends SQLiteOpenHelper{
 
         public MyDbHelper(Context context) {
