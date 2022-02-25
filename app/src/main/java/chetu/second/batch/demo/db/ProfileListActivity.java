@@ -60,6 +60,14 @@ public class ProfileListActivity extends BaseActivity implements AdapterView.OnI
 
         binding.listView.setOnItemLongClickListener(this);
         registerForContextMenu(binding.listView);
+        //TODO : Listener on listview item
+        binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                StudentData data = (StudentData) parent.getItemAtPosition(position);
+                showShortToast(""+data);
+            }
+        });
 
     }
 

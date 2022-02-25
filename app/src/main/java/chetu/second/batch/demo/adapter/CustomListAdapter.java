@@ -30,8 +30,8 @@ public class CustomListAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public StudentData getItem(int position) {
+        return list.get(position);
     }
 
     @Override
