@@ -65,7 +65,7 @@ public class ProfileListActivity extends BaseActivity implements AdapterView.OnI
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 StudentData data = (StudentData) parent.getItemAtPosition(position);
-                showShortToast(""+data);
+                showShortToast(""+data.getfName()+" "+data.getlName());
             }
         });
 
