@@ -10,5 +10,7 @@ public interface ApiName {
     @GET("/posts")
     Call<List<PostsResponse>> getPostsData();
 
+    @GET("/users")
+    Call<List<UserResponse>> getUsersData(String userName);
 
 }

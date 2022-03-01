@@ -29,26 +29,48 @@ public class PostsDataActivity extends AppCompatActivity {
         progressDialog.show();
 
         ApiName apiName = RetrofitApi.getInstance(ApiName.class);
-        Call<List<PostsResponse>> call = apiName.getPostsData();
-        call.enqueue(new Callback<List<PostsResponse>>() {
+        Call<List<UserResponse>> call = apiName.getUsersData("Any Rubin");
+        call.enqueue(new Callback<List<UserResponse>>() {
             @Override
-            public void onResponse(Call<List<PostsResponse>> call, Response<List<PostsResponse>> response) {
+            public void onResponse(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
                 progressDialog.hide();
                 if (response.isSuccessful() && response.code() == 200){
-                    List<PostsResponse> postsResponses = response.body();
-                    for (PostsResponse postData : postsResponses){
-                        Log.d("DATA:", postData.getUserId()+"\n"+postData.getId()+"\n"+postData.getTitle()+"\n"+postData.getBody());
+                    List<UserResponse> userResponseList = response.body();
+                    for (UserResponse data : userResponseList){
+                        Log.d("USERSDATA:", data.getAddressData().getGeoData().getLatitude());
                     }
                 }
-
             }
 
             @Override
-            public void onFailure(Call<List<PostsResponse>> call, Throwable t) {
+            public void onFailure(Call<List<UserResponse>> call, Throwable t) {
                 progressDialog.hide();
                 Utility.showLongToast(PostsDataActivity.this, t.getMessage());
             }
         });
+        //TODO : Implementation of POSTS API
+//        Call<List<PostsResponse>> call = apiName.getPostsData();
+//        call.enqueue(new Callback<List<PostsResponse>>() {
+//            @Override
+//            public void onResponse(Call<List<PostsResponse>> call, Response<List<PostsResponse>> response) {
+//                progressDialog.hide();
+//                if (response.isSuccessful() && response.code() == 200){
+//                    List<PostsResponse> postsResponses = response.body();
+//                    for (PostsResponse postData : postsResponses){
+//                        Log.d("DATA:", postData.getUserId()+"\n"+postData.getId()+"\n"+postData.getTitle()+"\n"+postData.getBody());
+//                    }
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<PostsResponse>> call, Throwable t) {
+//                progressDialog.hide();
+//                Utility.showLongToast(PostsDataActivity.this, t.getMessage());
+//            }
+//        });
+
+
 
 
 
