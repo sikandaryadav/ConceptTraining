@@ -8,10 +8,12 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -56,8 +58,9 @@ public class ProfileListActivity extends BaseActivity implements AdapterView.OnI
         adapter = new DatabaseAdapter(this);
         adapter.openDatabase();
 
-        loadDataInListview();
-
+//        loadDataInListview();
+        // TODO : Calling AsyncTask
+        new MyAsyncTask().execute();
         binding.listView.setOnItemLongClickListener(this);
         registerForContextMenu(binding.listView);
         //TODO : Listener on listview item
@@ -244,5 +247,48 @@ public class ProfileListActivity extends BaseActivity implements AdapterView.OnI
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         clickedPosition = position;
         return false;
+    }
+
+    class MyAsyncTask extends AsyncTask<Void, Void, List<StudentData>>{
+        ProgressDialog progressDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(ProfileListActivity.this);
+            progressDialog.setMessage("Please wait");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+
+        @Override
+        protected List<StudentData> doInBackground(Void... voids) {
+            List<StudentData> studentDataList = new ArrayList<>();
+            cursor = adapter.getAllData();
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    try {
+                        Thread.sleep(1000);
+                    }catch (Exception exception){
+
+                    }
+                    StudentData studentData = new StudentData();
+                    studentData.setRowId(cursor.getString(0));
+                    studentData.setfName(cursor.getString(1));
+                    studentData.setlName(cursor.getString(2));
+                    studentData.setImage(cursor.getString(3));
+                    studentDataList.add(studentData);
+                } while (cursor.moveToNext());
+            }
+            return studentDataList;
+        }
+
+        @Override
+        protected void onPostExecute(List<StudentData> studentDataList) {
+            super.onPostExecute(studentDataList);
+            if (progressDialog.isShowing()) progressDialog.hide();
+            CustomListAdapter adapter = new CustomListAdapter(studentDataList, ProfileListActivity.this);
+            binding.listView.setAdapter(adapter);
+        }
     }
 }
