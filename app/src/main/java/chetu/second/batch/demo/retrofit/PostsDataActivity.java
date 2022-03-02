@@ -5,12 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import java.util.List;
 
 import chetu.second.batch.demo.R;
+import chetu.second.batch.demo.retrofit.responses.UserResponse;
 import chetu.second.batch.demo.utilities.Utility;
 import retrofit2.Call;
 import retrofit2.Callback;

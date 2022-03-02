@@ -1,6 +1,9 @@
-package chetu.second.batch.demo.retrofit;
+package chetu.second.batch.demo.retrofit.responses;
 
 import com.google.gson.annotations.SerializedName;
+
+import chetu.second.batch.demo.retrofit.pojos.AddressPojo;
+import chetu.second.batch.demo.retrofit.pojos.CompanyPojo;
 
 public class UserResponse {
     @SerializedName("id")

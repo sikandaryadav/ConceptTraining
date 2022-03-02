@@ -1,4 +1,4 @@
-package chetu.second.batch.demo.retrofit;
+package chetu.second.batch.demo.retrofit.pojos;
 
 import com.google.gson.annotations.SerializedName;
 
