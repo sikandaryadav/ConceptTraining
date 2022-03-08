@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitApi {
 //    public static final String BASE_URL = "https://jsonplaceholder.typicode.com";
     public static final String BASE_URL = "https://api.themoviedb.org"; // IMDB base URl
+    // https://rapidapi.com/  (Api for free)
 
     public static <S> S getInstance(Class<S> serviceClass){
         Retrofit retrofit = new Retrofit.Builder()

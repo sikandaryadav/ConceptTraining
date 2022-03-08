@@ -2,8 +2,10 @@ package chetu.second.batch.demo.roomDb.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -29,13 +31,23 @@ public class UserInputActivity extends AppCompatActivity implements View.OnClick
         dao = AppDatabase.getInstance(UserInputActivity.this).userDao();
 
         binding.btnInsert.setOnClickListener(this);
+        binding.btnGetData.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        User user = new User(binding.etFname.getText().toString(), binding.etLname.getText().toString(),
-                binding.etMobileno.getText().toString());
-        new InsertUserAsyncTask().execute(Collections.singletonList(user));
+        switch (v.getId()) {
+            case R.id.btn_insert:
+            User user = new User(binding.etFname.getText().toString(), binding.etLname.getText().toString(),
+                    binding.etMobileno.getText().toString());
+            new InsertUserAsyncTask().execute(Collections.singletonList(user));
+
+            break;
+
+            case R.id.btn_get_data:
+                new GetDatAsyncTask().execute();
+                break;
+        }
 
     }
 
@@ -54,6 +66,30 @@ public class UserInputActivity extends AppCompatActivity implements View.OnClick
         protected void onPostExecute(List<Long> longs) {
             super.onPostExecute(longs);
             Utility.showLongToast(UserInputActivity.this, longs.size()+" data inserted...");
+        }
+    }
+
+    class GetDatAsyncTask extends AsyncTask<Void, Void, List<User>>{
+        ProgressDialog dialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog = new ProgressDialog(UserInputActivity.this);
+            dialog.setMessage("Please wait...");
+            dialog.setCancelable(false);
+            dialog.show();
+        }
+
+        @Override
+        protected List<User> doInBackground(Void... voids) {
+            List<User> userList = dao.getAllData();
+            return userList;
+        }
+
+        @Override
+        protected void onPostExecute(List<User> users) {
+            super.onPostExecute(users);
+            Log.d("TAG:", ""+users.size());
         }
     }
 }
