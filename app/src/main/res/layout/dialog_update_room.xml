@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+    <EditText
+        android:id="@+id/et_fname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter fname"
+        android:layout_marginTop="50dp"
+        android:textColorHint="@color/black"
+        android:inputType="textCapWords"
+        />
+
+    <EditText
+        android:id="@+id/et_lname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter lname"
+        android:layout_marginTop="10dp"
+        android:textColorHint="@color/black"
+        android:inputType="textCapWords"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_update"
+        android:text="Update"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        />
+</LinearLayout>
