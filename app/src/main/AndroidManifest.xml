@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Demo">
         <activity
-            android:name=".services.ServiceActivity"
+            android:name=".dataBinding.SimpleDatabindingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,12 +25,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".roomDb.activity.ListviewWithRoomDbActivity"
+            android:name=".services.ServiceActivity"
             android:exported="true">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
+
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".roomDb.activity.ListviewWithRoomDbActivity"
+            android:exported="true">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".roomDb.activity.UserInputActivity"
@@ -201,10 +211,11 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <service android:name=".services.SimpleServiceExample"/>
-        <service android:name=".services.JobIntentServiceExamle"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            />
+
+        <service android:name=".services.SimpleServiceExample" />
+        <service
+            android:name=".services.JobIntentServiceExamle"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>
