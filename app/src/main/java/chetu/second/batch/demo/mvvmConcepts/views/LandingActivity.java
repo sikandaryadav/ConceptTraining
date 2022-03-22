@@ -15,6 +15,7 @@ import java.util.List;
 import chetu.second.batch.demo.R;
 import chetu.second.batch.demo.databinding.ActivityLandingBinding;
 import chetu.second.batch.demo.mvvmConcepts.model.adapter.LandingPostDataAdapter;
+import chetu.second.batch.demo.mvvmConcepts.model.pojo.PostData;
 import chetu.second.batch.demo.mvvmConcepts.viewModels.LandingViewModel;
 import chetu.second.batch.demo.retrofit.responses.PostsResponse;
 
@@ -41,9 +42,9 @@ public class LandingActivity extends AppCompatActivity {
                 else progressDialog.dismiss();
             }
         });
-        viewModel.getPostsData().observe(this, new Observer<List<PostsResponse>>() {
+        viewModel.getPostsData().observe(this, new Observer<List<PostData>>() {
             @Override
-            public void onChanged(List<PostsResponse> postsResponses) {
+            public void onChanged(List<PostData> postsResponses) {
 //                Log.d("Data:", postsResponses.get(0).getBody());
                 LandingPostDataAdapter adapter = new LandingPostDataAdapter(LandingActivity.this, postsResponses);
                 binding.recyclerView.setAdapter(adapter);

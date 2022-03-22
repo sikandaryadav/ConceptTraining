@@ -13,13 +13,13 @@ import java.util.List;
 
 import chetu.second.batch.demo.R;
 import chetu.second.batch.demo.databinding.LayoutPostDataItemBinding;
-import chetu.second.batch.demo.retrofit.responses.PostsResponse;
+import chetu.second.batch.demo.mvvmConcepts.model.pojo.PostData;
 
 public class LandingPostDataAdapter extends RecyclerView.Adapter<LandingPostDataAdapter.MyViewholder> {
     private Context context;
-    private List<PostsResponse> postsResponseList;
+    private List<PostData> postsResponseList;
 
-    public LandingPostDataAdapter(Context context, List<PostsResponse> postsResponseList) {
+    public LandingPostDataAdapter(Context context, List<PostData> postsResponseList) {
         this.context = context;
         this.postsResponseList = postsResponseList;
     }
@@ -33,8 +33,7 @@ public class LandingPostDataAdapter extends RecyclerView.Adapter<LandingPostData
 
     @Override
     public void onBindViewHolder(@NonNull MyViewholder holder, int position) {
-        PostsResponse responseData = postsResponseList.get(position);
-        holder.binding.tvTitle.setText(responseData.getTitle());
+        holder.binding.setPostDatas(postsResponseList.get(position));
     }
 
     @Override
