@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import chetu.second.batch.demo.R;
 import chetu.second.batch.demo.databinding.ActivityLandingBinding;
+import chetu.second.batch.demo.mvvmConcepts.model.adapter.LandingPostDataAdapter;
 import chetu.second.batch.demo.mvvmConcepts.viewModels.LandingViewModel;
 import chetu.second.batch.demo.retrofit.responses.PostsResponse;
 
@@ -25,6 +27,8 @@ public class LandingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_landing);
         viewModel = new ViewModelProvider(this).get(LandingViewModel.class);
+
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -40,7 +44,10 @@ public class LandingActivity extends AppCompatActivity {
         viewModel.getPostsData().observe(this, new Observer<List<PostsResponse>>() {
             @Override
             public void onChanged(List<PostsResponse> postsResponses) {
-                Log.d("Data:", postsResponses.get(0).getBody());
+//                Log.d("Data:", postsResponses.get(0).getBody());
+                LandingPostDataAdapter adapter = new LandingPostDataAdapter(LandingActivity.this, postsResponses);
+                binding.recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
         });
     }
