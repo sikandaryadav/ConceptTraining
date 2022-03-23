@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -35,6 +36,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
     def room_version = "2.4.2"
     def lifecycle_version = "2.4.1"
     implementation "androidx.room:room-runtime:$room_version"
