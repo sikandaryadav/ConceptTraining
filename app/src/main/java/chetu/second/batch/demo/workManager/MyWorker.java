@@ -17,7 +17,7 @@ public class MyWorker extends Worker {
     @Override
     public Result doWork() {
 
-        for (int i=1; i<=100; i++){
+        for (int i=1; i<=99999; i++){
             Log.d("workLog", "I = "+i);
         }
         return Result.success();

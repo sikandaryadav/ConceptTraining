@@ -2,6 +2,7 @@ package chetu.second.batch.demo.workManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+import androidx.work.Constraints;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
@@ -19,8 +20,16 @@ public class WormanagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wormanager);
         view = findViewById(R.id.tv_work_status);
+
+        Constraints constraints = new Constraints
+                .Builder()
+//                .setRequiresCharging(true)
+                .setRequiresBatteryNotLow(true)
+                .build();
+
         OneTimeWorkRequest request = new OneTimeWorkRequest
                 .Builder(MyWorker.class)
+                .setConstraints(constraints)
                 .build();
 
         WorkManager.getInstance(this).enqueue(request);
@@ -31,5 +40,7 @@ public class WormanagerActivity extends AppCompatActivity {
                 view.setText(workInfo.getState().name());
             }
         });
+
+
     }
 }
