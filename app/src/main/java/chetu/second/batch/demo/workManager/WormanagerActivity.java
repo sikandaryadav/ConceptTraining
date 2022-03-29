@@ -3,14 +3,12 @@ package chetu.second.batch.demo.workManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.work.Constraints;
+import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
-
 import android.os.Bundle;
-
 import com.google.android.material.textview.MaterialTextView;
-
 import chetu.second.batch.demo.R;
 
 public class WormanagerActivity extends AppCompatActivity {
@@ -23,13 +21,18 @@ public class WormanagerActivity extends AppCompatActivity {
 
         Constraints constraints = new Constraints
                 .Builder()
-//                .setRequiresCharging(true)
-                .setRequiresBatteryNotLow(true)
+                .setRequiresCharging(true)
+//                .setRequiresBatteryNotLow(true)
+                .build();
+
+        Data data = new Data.Builder()
+                .putInt("_key", 55)
                 .build();
 
         OneTimeWorkRequest request = new OneTimeWorkRequest
                 .Builder(MyWorker.class)
                 .setConstraints(constraints)
+                .setInputData(data)
                 .build();
 
         WorkManager.getInstance(this).enqueue(request);
