@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "553387128061",
+    "project_id": "learning-app-f0ce2",
+    "storage_bucket": "learning-app-f0ce2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553387128061:android:66e46d919b430308d7ba94",
+        "android_client_info": {
+          "package_name": "chetu.second.batch.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553387128061-vfj47i1hn921jpjb4ug8gstjop5fd24v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxWhIuUWUcjaI10lSo0igdUeNWnMeh17k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553387128061-vfj47i1hn921jpjb4ug8gstjop5fd24v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

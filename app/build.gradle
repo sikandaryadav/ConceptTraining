@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -36,7 +37,6 @@ android {
 }
 
 dependencies {
-
     def room_version = "2.4.2"
     def lifecycle_version = "2.4.1"
     def work_version = "2.7.1"
@@ -65,4 +65,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation "androidx.work:work-runtime:$work_version"
+
+    implementation 'com.google.firebase:firebase-bom:29.3.0'
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-analytics'
 }
