@@ -3,18 +3,23 @@ package chetu.second.batch.demo.firebaseConcepts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import chetu.second.batch.demo.R;
 import chetu.second.batch.demo.databinding.ActivityFirebaseLandingBinding;
 import chetu.second.batch.demo.utilities.Utility;
 
-public class FirebaseLandingActivity extends AppCompatActivity {
+public class FirebaseLandingActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityFirebaseLandingBinding binding;
     private FirebaseDb firebaseDb;
     @Override
@@ -24,9 +29,16 @@ public class FirebaseLandingActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         firebaseDb = new FirebaseDb();
-        binding.btnInsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+        binding.btnInsert.setOnClickListener(this);
+        binding.btnGetData.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_insert:
                 StudentInfo studentInfo = new StudentInfo();
                 studentInfo.setFirstName(binding.etFname.getText().toString());
                 studentInfo.setLastName(binding.etLname.getText().toString());
@@ -38,13 +50,17 @@ public class FirebaseLandingActivity extends AppCompatActivity {
                         Utility.showLongToast(FirebaseLandingActivity.this, "Successfuly inserted...");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Utility.showLongToast(FirebaseLandingActivity.this, e.getMessage());
-                            }
-                        });
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Utility.showLongToast(FirebaseLandingActivity.this, e.getMessage());
+                    }
+                });
 
-            }
-        });
+                break;
+
+            case R.id.btn_get_data:
+                startActivity(new Intent(FirebaseLandingActivity.this, DisplayActivity.class));
+                break;
+        }
     }
 }

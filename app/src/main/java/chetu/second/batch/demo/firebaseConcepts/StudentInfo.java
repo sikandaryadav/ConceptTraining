@@ -4,6 +4,7 @@ public class StudentInfo {
     private String firstName;
     private String lastName;
     private long phoneNumber;
+    private String key;
 
     public String getFirstName() {
         return firstName;
@@ -27,5 +28,13 @@ public class StudentInfo {
 
     public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

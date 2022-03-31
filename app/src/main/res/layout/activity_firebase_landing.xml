@@ -42,6 +42,13 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="Insert" />
+        <Button
+            android:id="@+id/btn_get_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Get Data" />
 
     </LinearLayout>
 </layout>

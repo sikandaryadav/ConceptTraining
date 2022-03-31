@@ -17,20 +17,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Demo">
         <activity
+            android:name=".firebaseConcepts.DisplayActivity"
+            android:exported="false" />
+        <activity
             android:name=".firebaseConcepts.FirebaseLandingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".workManager.WormanagerActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".lifecycleAware.ActivityOne"
