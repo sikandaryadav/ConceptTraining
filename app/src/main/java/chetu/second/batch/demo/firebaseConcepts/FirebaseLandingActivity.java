@@ -5,15 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import chetu.second.batch.demo.R;
 import chetu.second.batch.demo.databinding.ActivityFirebaseLandingBinding;
@@ -59,7 +54,7 @@ public class FirebaseLandingActivity extends AppCompatActivity implements View.O
                 break;
 
             case R.id.btn_get_data:
-                startActivity(new Intent(FirebaseLandingActivity.this, DisplayActivity.class));
+                startActivity(new Intent(FirebaseLandingActivity.this, DisplayListActivity.class));
                 break;
         }
     }

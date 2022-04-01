@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".firebaseConcepts.DisplayListActivity">
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rev_view"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+    tools:context=".firebaseConcepts.FCMActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

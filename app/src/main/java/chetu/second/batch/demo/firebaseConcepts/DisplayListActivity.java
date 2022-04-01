@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +22,7 @@ import chetu.second.batch.demo.databinding.ActivityDisplayBinding;
 import chetu.second.batch.demo.interfaces.OnItemClickListenerFirebase;
 import chetu.second.batch.demo.utilities.Utility;
 
-public class DisplayActivity extends AppCompatActivity {
+public class DisplayListActivity extends AppCompatActivity {
     private ActivityDisplayBinding binding;
     private FirebaseDb firebaseDb;
     private List<StudentInfo> studentInfoList = new ArrayList<>();
@@ -35,7 +37,10 @@ public class DisplayActivity extends AppCompatActivity {
         displayAdapter = new DisplayAdapter(this, new OnItemClickListenerFirebase() {
             @Override
             public void onItemClick(int position, List<StudentInfo> studentInfo) {
-                Utility.showLongToast(DisplayActivity.this, studentInfo.get(position).getFirstName());
+//                Utility.showLongToast(DisplayActivity.this, studentInfo.get(position).getFirstName());
+                Intent intent = new Intent(DisplayListActivity.this, DisplayInfoActivity.class);
+                intent.putExtra("_student_info_", new Gson().toJson(studentInfo.get(position)));
+                startActivity(intent);
             }
         });
         binding.revView.setLayoutManager(new LinearLayoutManager(this));
@@ -44,8 +49,9 @@ public class DisplayActivity extends AppCompatActivity {
         firebaseDb.get().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     StudentInfo studentInfo = dataSnapshot.getValue(StudentInfo.class);
+                    studentInfo.setKey(dataSnapshot.getKey());
                     studentInfoList.add(studentInfo);
                     displayAdapter.setStudentInfoList(studentInfoList);
                     displayAdapter.notifyDataSetChanged();
@@ -58,5 +64,28 @@ public class DisplayActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (studentInfoList.size() > 0) studentInfoList.clear();
+        firebaseDb.get().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    StudentInfo studentInfo = dataSnapshot.getValue(StudentInfo.class);
+                    studentInfo.setKey(dataSnapshot.getKey());
+                    studentInfoList.add(studentInfo);
+                    displayAdapter.setStudentInfoList(studentInfoList);
+                    displayAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
